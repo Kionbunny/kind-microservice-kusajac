@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles/main.css" />
+    <title>Employee Directory</title>
+  </head>
+  <body>
+    <div class="header">
+      <h1>Employee Directory !</h1>
+      <input
+        type="text"
+        id="searchInput"
+        placeholder="Search by name or email"
+      />
+      <button onclick="openFilter()">Filter</button>
+      <button onclick="openForm()">Add Employee</button>
+    </div>
+
+    <div id="filterSidebar" class="sidebar hidden">
+      <label>First Name: <input type="text" id="filterFirstName" /></label>
+      <label>Department: <input type="text" id="filterDepartment" /></label>
+      <label>Role: <input type="text" id="filterRole" /></label>
+      <button onclick="applyFilters()">Apply</button>
+      <button onclick="resetFilters()">Reset</button>
+    </div>
+
+    <div id="sortControls">
+      <select id="sortBy" onchange="applySort()">
+        <option value="">Sort By</option>
+        <option value="firstName">First Name</option>
+        <option value="department">Department</option>
+      </select>
+      <select id="itemsPerPage" onchange="changePagination()">
+        <option value="10">10</option>
+        <option value="25">25</option>
+        <option value="50">50</option>
+        <option value="100">100</option>
+      </select>
+    </div>
+
+    <div id="employeeList" class="employee-grid"></div>
+
+    <div id="pagination"></div>
+
+    <div id="formModal" class="modal hidden">
+      <form id="employeeForm" onsubmit="submitForm(event)">
+        <h2 id="formTitle">Add Employee</h2>
+        <input type="hidden" id="employeeId" />
+        <input type="text" id="firstName" placeholder="First Name" required />
+        <input type="text" id="lastName" placeholder="Last Name" required />
+        <input type="email" id="email" placeholder="Email" required />
+        <select id="department" required>
+          <option value="">Select Department</option>
+          <option>HR</option>
+          <option>IT</option>
+          <option>Finance</option>
+        </select>
+        <select id="role" required>
+          <option value="">Select Role</option>
+          <option>Manager</option>
+          <option>Developer</option>
+          <option>Analyst</option>
+        </select>
+        <div class="form-actions">
+          <button type="button" onclick="closeForm()">Cancel</button>
+          <button type="submit">Save</button>
+        </div>
+      </form>
+    </div>
+
+    <script src="data/mockData.js"></script>
+    <script src="scripts/main.js"></script>
+  </body>
+</html>
